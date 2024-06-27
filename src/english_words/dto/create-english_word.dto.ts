@@ -11,4 +11,7 @@ export class CreateEnglishWordDto {
 
     @ApiProperty()
     translation: string
+
+    @ApiProperty()
+    week: number
 }

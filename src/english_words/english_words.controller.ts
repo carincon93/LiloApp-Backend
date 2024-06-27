@@ -24,6 +24,11 @@ export class EnglishWordsController {
         return this.englishWordsService.findOne(+id)
     }
 
+    @Get('week/:week')
+    findByWeek(@Param('week') week: number) {
+        return this.englishWordsService.findByWeek(+week)
+    }
+
     @Patch(':id')
     update(@Param('id') id: string, @Body() updateEnglishWordDto: UpdateEnglishWordDto) {
         return this.englishWordsService.update(+id, updateEnglishWordDto)
