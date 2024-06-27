@@ -10,5 +10,5 @@ export class CreateEnglishWordDto {
     word: string
 
     @ApiProperty()
-    meaning: string
+    translation: string
 }
