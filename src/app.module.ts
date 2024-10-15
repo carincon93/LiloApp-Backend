@@ -4,6 +4,7 @@ import { AppService } from './app.service'
 import { AcceptLanguageResolver, I18nModule, QueryResolver } from 'nestjs-i18n'
 import { EnglishWordsModule } from './english_words/english_words.module'
 import { ItalianWordsModule } from './italian_words/italian_words.module';
+import { EnglishSpanishModule } from './english_spanish/english_spanish.module';
 import * as path from 'path'
 
 @Module({
@@ -18,6 +19,7 @@ import * as path from 'path'
         }),
         EnglishWordsModule,
         ItalianWordsModule,
+        EnglishSpanishModule,
     ],
     controllers: [AppController],
     providers: [AppService],

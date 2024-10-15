@@ -12,7 +12,9 @@ export class EnglishWordsService {
     }
 
     async findAll() {
-        return await this.prisma.englishWords.findMany()
+        return await this.prisma.englishWords.findMany({
+            include: { englishSpanish: true },
+        })
     }
 
     findOne(id: number) {
@@ -24,6 +26,7 @@ export class EnglishWordsService {
             where: {
                 week: week,
             },
+            include: { englishSpanish: true },
         })
     }
 

@@ -16,10 +16,10 @@ datasource db {
 model EnglishWords {
   id                         String                       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   word                       String                       @db.VarChar(25)
-  translation                String?                      @db.VarChar(50)
   week                       Int?                      
   createdAt                  DateTime?                    @default(now())
   updatedAt                  DateTime?                    @updatedAt
+  englishSpanish             EnglishSpanish[]
 }
 
 model ItalianWords {
@@ -30,4 +30,14 @@ model ItalianWords {
   createdAt                  DateTime?                    @default(now())
   updatedAt                  DateTime?                    @updatedAt
 }
+
+model EnglishSpanish {
+  id                         String                       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  englishWordId              String                       @db.Uuid
+  translation                String?                      @db.VarChar(50)
+  createdAt                  DateTime?                    @default(now())
+  updatedAt                  DateTime?                    @updatedAt
+  englishWord                EnglishWords                 @relation(fields: [englishWordId], references: [id])
+}
+
 
