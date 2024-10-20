@@ -14,6 +14,7 @@ export class EnglishWordsService {
     async findAll() {
         return await this.prisma.englishWords.findMany({
             include: { englishSpanish: true },
+            orderBy: { word: 'asc' },
         })
     }
 
