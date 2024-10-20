@@ -9,7 +9,7 @@ import { ApiTags } from '@nestjs/swagger'
 export class EnglishSpanishController {
     constructor(private readonly englishSpanishService: EnglishSpanishService) {}
 
-    @Post()
+    @Post('')
     create(@Body() createEnglishSpanishDto: CreateEnglishSpanishDto) {
         return this.englishSpanishService.create(createEnglishSpanishDto)
     }

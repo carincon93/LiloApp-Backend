@@ -1,26 +1,31 @@
-import { Injectable } from '@nestjs/common';
-import { CreateEnglishSpanishDto } from './dto/create-english_spanish.dto';
-import { UpdateEnglishSpanishDto } from './dto/update-english_spanish.dto';
+import { Injectable } from '@nestjs/common'
+import { CreateEnglishSpanishDto } from './dto/create-english_spanish.dto'
+import { UpdateEnglishSpanishDto } from './dto/update-english_spanish.dto'
+import { PrismaService } from 'src/prisma/prisma.service'
 
 @Injectable()
 export class EnglishSpanishService {
-  create(createEnglishSpanishDto: CreateEnglishSpanishDto) {
-    return 'This action adds a new englishSpanish';
-  }
+    constructor(private prisma: PrismaService) {}
 
-  findAll() {
-    return `This action returns all englishSpanish`;
-  }
+    create(createEnglishSpanishDto: CreateEnglishSpanishDto) {
+        return this.prisma.englishSpanish.create({
+            data: createEnglishSpanishDto,
+        })
+    }
 
-  findOne(id: number) {
-    return `This action returns a #${id} englishSpanish`;
-  }
+    findAll() {
+        return `This action returns all englishSpanish`
+    }
 
-  update(id: number, updateEnglishSpanishDto: UpdateEnglishSpanishDto) {
-    return `This action updates a #${id} englishSpanish`;
-  }
+    findOne(id: number) {
+        return `This action returns a #${id} englishSpanish`
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} englishSpanish`;
-  }
+    update(id: number, updateEnglishSpanishDto: UpdateEnglishSpanishDto) {
+        return `This action updates a #${id} englishSpanish`
+    }
+
+    remove(id: number) {
+        return `This action removes a #${id} englishSpanish`
+    }
 }
