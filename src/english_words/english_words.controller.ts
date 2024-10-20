@@ -11,6 +11,7 @@ export class EnglishWordsController {
 
     @Post()
     create(@Body() createEnglishWordDto: CreateEnglishWordDto) {
+        
         return this.englishWordsService.create(createEnglishWordDto)
     }
 

@@ -7,8 +7,36 @@ import { PrismaService } from 'src/prisma/prisma.service'
 export class EnglishWordsService {
     constructor(private prisma: PrismaService) {}
 
-    create(createEnglishWordDto: CreateEnglishWordDto) {
-        return 'This action adds a new englishWord'
+    async create(createEnglishWordDto: CreateEnglishWordDto) {
+        // Establecer la semana en 30
+        createEnglishWordDto.week = 30
+
+        // Separar las traducciones
+        const translations = createEnglishWordDto.translations
+
+        // Eliminar el campo 'translations' del DTO original
+        delete createEnglishWordDto.translations
+
+        // Crear la palabra en inglés
+        const englishWord = await this.prisma.englishWords.create({
+            data: createEnglishWordDto,
+        })
+
+        // Crear las traducciones asociadas
+        const translationPromises = translations.split(',').map((item) =>
+            this.prisma.englishSpanish.create({
+                data: {
+                    englishWordId: englishWord.id,
+                    translation: item.trim(), // Eliminar espacios en blanco innecesarios
+                },
+            }),
+        )
+
+        // Esperar a que todas las promesas de creación de traducciones se completen
+        await Promise.all(translationPromises)
+
+        // Devolver la palabra en inglés creada
+        return englishWord
     }
 
     async findAll() {

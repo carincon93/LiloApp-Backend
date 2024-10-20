@@ -10,7 +10,7 @@ export class CreateEnglishWordDto {
     word: string
 
     @ApiProperty()
-    translation: string
+    translations: string
 
     @ApiProperty()
     week: number
