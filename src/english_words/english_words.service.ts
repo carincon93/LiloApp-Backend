@@ -63,7 +63,13 @@ export class EnglishWordsService {
         return `This action updates a #${id} englishWord`
     }
 
-    remove(id: string) {
+    async remove(id: string) {
+        await this.prisma.englishSpanish.deleteMany({
+            where: {
+                englishWordId: id,
+            },
+        })
+
         return this.prisma.englishWords.delete({
             where: {
                 id: id,
