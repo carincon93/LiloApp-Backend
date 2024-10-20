@@ -11,7 +11,6 @@ export class EnglishWordsController {
 
     @Post()
     create(@Body() createEnglishWordDto: CreateEnglishWordDto) {
-        
         return this.englishWordsService.create(createEnglishWordDto)
     }
 
@@ -37,6 +36,6 @@ export class EnglishWordsController {
 
     @Delete(':id')
     remove(@Param('id') id: string) {
-        return this.englishWordsService.remove(+id)
+        return this.englishWordsService.remove(id)
     }
 }

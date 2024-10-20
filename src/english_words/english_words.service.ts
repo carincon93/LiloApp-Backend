@@ -63,8 +63,12 @@ export class EnglishWordsService {
         return `This action updates a #${id} englishWord`
     }
 
-    remove(id: number) {
-        return `This action removes a #${id} englishWord`
+    remove(id: string) {
+        return this.prisma.englishWords.delete({
+            where: {
+                id: id,
+            },
+        })
     }
 
     async updateWeeks() {
